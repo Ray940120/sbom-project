@@ -1,0 +1,27 @@
+name: Generate SBOM (CI/CD)
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  sbom-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Run Syft to generate SBOM
+        uses: anchore/sbom-action@v0
+        with:
+          path: .
+          format: cyclonedx-json
+          output-file: github_sbom.json
+
+      - name: Upload SBOM Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: SBOM-Report
+          path: github_sbom.json
+          retention-days: 5
