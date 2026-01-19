@@ -12,10 +12,11 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      # 這裡是最重要的修改：明確指定 requirements.txt
       - name: Run Syft to generate SBOM
         uses: anchore/sbom-action@v0
         with:
-          path: .
+          path: requirements.txt       # 指定掃描這個檔案
           format: cyclonedx-json
           output-file: github_sbom.json
 
