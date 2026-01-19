@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Run Syft to generate SBOM
         uses: anchore/sbom-action@v0
@@ -20,7 +20,7 @@ jobs:
           output-file: github_sbom.json
 
       - name: Upload SBOM Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: SBOM-Report
           path: github_sbom.json
