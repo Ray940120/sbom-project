@@ -16,7 +16,7 @@ jobs:
       - name: Run Syft to generate SBOM
         uses: anchore/sbom-action@v0
         with:
-          path: requirements.txt       # 指定掃描這個檔案
+          path: .       # 指定掃描這個檔案
           format: cyclonedx-json
           output-file: github_sbom.json
 
